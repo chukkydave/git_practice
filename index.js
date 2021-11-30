@@ -79,3 +79,27 @@ let zodiac = {
 	Pisces:
 		"If you looked up the word 'psychic' in the dictionary, there would definitely be a picture of Pisces next to it. Pisces is the most intuitive, sensitive, and empathetic sign of the entire zodiac — and that’s because it’s the last of the last. As the final sign, Pisces has absorbed every lesson — the joys and the pain, the hopes and the fears — learned by all of the other signs. It's symbolized by two fish swimming in opposite directions, representing the constant division of Pisces' attention between fantasy and reality.",
 };
+
+const btn = document.querySelector('button');
+const inp = document.querySelector('#ast_check');
+const date = document.querySelector('#ast_date');
+const appendMsg = document.querySelector('#generated-text');
+let selectedDate;
+
+inp.addEventListener('click', () => {
+	if (inp.checked == true) {
+		date.style.display = 'block';
+	} else {
+		date.style.display = 'none';
+	}
+});
+
+date.addEventListener('change', () => {
+	let mt = moment(date.value, 'YYYY-MM-DD').format('MMMM D');
+	console.log(mt);
+	selectedDate = mt;
+});
+
+btn.addEventListener('click', () => {
+	appendMsg.innerHTML = messages[Math.floor(Math.random() * messages.length)];
+});
