@@ -1,29 +1,3 @@
-let messages = [
-	'Hey pal, what name would you call a dog that has no both legs?...well it does not matter what name you might call him, trust me he is not coming!',
-	'Since you think you know too much than me, what breed of dog can jump higher than buildings? The answer is "any dog," because buildings cannot jump.',
-	'Dear besty, if you get the answer to this, then lunch is on me. What is the tallest building in the entire world?... It must be the library because it has so many stories!',
-	'Hey, beautiful. Stop crying because it is over. Start smiling because that ungrateful loser is someone else problem.',
-	"Don't be sad that he chose her over you, stop counting your thunderstorms, and start counting your rainbows!",
-	"Hey pal, if they hurt you again, just tell me, I can make their death look like an accident! Don't worry I have got your back",
-	'Please remember, do not take life too seriously. You will never get out of it alive.',
-	'If you feel down, like the world is not listening, and you feel like crying, just remember, there is someone out there struggling to pull a push to open door.',
-	'Before we meet tonight for the party, just remember that life is not a fairy tale. If you lose your shoe at midnight, you are drunk.',
-	"Dear besty, I hope you studied well for tomorrow's exam. Today as I was reading, I noticed that the word 'Studying' was made up of two words originally…",
-];
-
-// Aries (March 21 – April 19)
-// Taurus (April 20 – May 20)
-// Gemini (May 21 – June 20)
-// Cancer (June 21 – July 22)
-// Leo (July 23 – August 22)
-// Virgo (August 23 – September 22)
-// Libra (September 23 – October 22)
-// Scorpio (October 23 – November 21)
-// Sagittarius (November 22 – December 21)
-// Capricorn (December 22 – January 19)
-// Aquarius (January 20 – February 18)
-// Pisces (February 19 – March 20)
-
 let months = [
 	'January',
 	'February',
@@ -72,7 +46,7 @@ let zodiac = {
 		'Elusive and mysterious, Scorpio is one of the most misunderstood signs of the zodiac. Scorpio is a water sign that uses emotional energy as fuel, cultivating powerful wisdom through both the physical and unseen realms. In fact, Scorpio derives its extraordinary courage from its psychic abilities, which is what makes this sign one of the most complicated, dynamic signs of the zodiac.',
 	Sagittarius:
 		'Oh, the places Sagittarius goes! But… actually. This fire sign knows no bounds. Represented by the archer, Sagittarians are always on a quest for knowledge. The last fire sign of the zodiac, Sagittarius launches its many pursuits like blazing arrows, chasing after geographical, intellectual, and spiritual adventures.',
-	Capricon:
+	Capricorn:
 		'What is the most valuable resource? For Capricorn, the answer is clear: Time. Capricorn is climbing the mountain straight to the top and knows that patience, perseverance, and dedication is the only way to scale. The last earth sign of the zodiac, Capricorn, is represented by the sea-goat, a mythological creature with the body of a goat and the tail of a fish. Accordingly, Capricorns are skilled at navigating both the material and emotional realms.',
 	Aquarius:
 		"Despite the 'aqua' in its name, Aquarius is actually the last air sign of the zodiac. Innovative, progressive, and shamelessly revolutionary, Aquarius is represented by the water bearer, the mystical healer who bestows water, or life, upon the land. Accordingly, Aquarius is the most humanitarian astrological sign. At the end of the day, Aquarius is dedicated to making the world a better place.",
@@ -95,11 +69,82 @@ inp.addEventListener('click', () => {
 });
 
 date.addEventListener('change', () => {
-	let mt = moment(date.value, 'YYYY-MM-DD').format('MMMM D');
-	console.log(mt);
-	selectedDate = mt;
+	let mt = moment(date.value, 'YYYY-MM-DD').format('DD-MM');
+
+	// Aries (March 21 – April 19)
+	// Taurus (April 20 – May 20)
+	// Gemini (May 21 – June 20)
+	// Cancer (June 21 – July 22)
+	// Leo (July 23 – August 22)
+	// Virgo (August 23 – September 22)
+	// Libra (September 23 – October 22)
+	// Scorpio (October 23 – November 21)
+	// Sagittarius (November 22 – December 21)
+	// Capricorn (December 22 – January 19)
+	// Aquarius (January 20 – February 18)
+	// Pisces (February 19 – March 20)
+	if (checkAst('01-01-2021', '19-01-2021', mt + '-2021')) {
+		selectedDate = 'Capricorn';
+	} else if (checkAst('20-01-2021', '18-02-2021', mt + '-2021')) {
+		selectedDate = 'Aquarius';
+	} else if (checkAst('19-02-2021', '20-03-2021', mt + '-2021')) {
+		selectedDate = 'Pisces';
+	} else if (checkAst('21-03-2021', '19-04-2021', mt + '-2021')) {
+		selectedDate = 'Aries';
+	} else if (checkAst('20-04-2021', '20-05-2021', mt + '-2021')) {
+		selectedDate = 'Taurus';
+	} else if (checkAst('21-05-2021', '20-06-2021', mt + '-2021')) {
+		selectedDate = 'Gemini';
+	} else if (checkAst('21-06-2021', '22-07-2021', mt + '-2021')) {
+		selectedDate = 'Cancer';
+	} else if (checkAst('23-07-2021', '22-08-2021', mt + '-2021')) {
+		selectedDate = 'Leo';
+	} else if (checkAst('23-08-2021', '22-09-2021', mt + '-2021')) {
+		selectedDate = 'Virgo';
+	} else if (checkAst('23-09-2021', '22-10-2021', mt + '-2021')) {
+		selectedDate = 'Libra';
+	} else if (checkAst('23-10-2021', '21-11-2021', mt + '-2021')) {
+		selectedDate = 'Scorpio';
+	} else if (checkAst('22-11-2021', '21-12-2021', mt + '-2021')) {
+		selectedDate = 'Sagittarius';
+	} else if (checkAst('22-12-2021', '31-12-2021', mt + '-2021')) {
+		selectedDate = 'Capricorn';
+	}
 });
 
 btn.addEventListener('click', () => {
-	appendMsg.innerHTML = messages[Math.floor(Math.random() * messages.length)];
+	if (inp.checked == true) {
+		if (!date.value) {
+			appendMsg.style.color = 'red';
+			appendMsg.innerHTML = 'Kindly select a date or uncheck the checkbox';
+		} else {
+			appendMsg.style.color = 'black';
+			appendMsg.innerHTML = `${selectedDate}: ${zodiac[selectedDate]}`;
+		}
+	} else {
+		appendMsg.style.color = 'black';
+		mySelectedDate = star[Math.floor(Math.random() * star.length)];
+		appendMsg.innerHTML = `${mySelectedDate}: ${zodiac[mySelectedDate]}`;
+	}
 });
+
+function checkAst(Da1, Da2, Da3) {
+	// Format - DD/MM/YYYY
+	var Date_1 = Da1;
+	var Date_2 = Da2;
+	var Date_to_check = Da3;
+
+	D_1 = Date_1.split('-');
+	D_2 = Date_2.split('-');
+	D_3 = Date_to_check.split('-');
+
+	var d1 = new Date(D_1[2], parseInt(D_1[1]) - 1, D_1[0]);
+	var d2 = new Date(D_2[2], parseInt(D_2[1]) - 1, D_2[0]);
+	var d3 = new Date(D_3[2], parseInt(D_3[1]) - 1, D_3[0]);
+
+	if (d3 >= d1 && d3 <= d2) {
+		return true;
+	} else {
+		return false;
+	}
+}
